@@ -1,18 +1,30 @@
-< !DOCTYPE html >
+function submit() {
+    firstNum = parseInt(document.getElementById('firstNumber').value)
+    secondNum = parseInt(document.getElementById('secondNumber').value)
 
-    <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <meta charset="utf-8" />
-            <title></title>
-        </head>
-        <body>
-            <input id="firstNumber" />
-            <input id="secondNumber" />
+    first = "first"
+    second = "second"
+    let data = {
+        first: firstNum,
+        second: secondNum
+    };
 
-            <input type="button" onclick="submit()" value="CLICK" />
-            <script src="script.js"></script>
-        </body>
-    </html>
+    url = "http://127.0.0.1:8000/num"
+    let xhr = new XMLHttpRequest()
+    xhr.open("POST", url, true)
+    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Content-type', 'application/ecmascript');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+        }
+    };
+
+    xhr.send(data)
 
 
 
+}
